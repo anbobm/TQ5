@@ -1,0 +1,21 @@
+def noten(punkte):
+    # Die Funktion bleibt unverändert.
+    if punkte >= 90:
+        print("90-100 Punkte = Sehr gut")
+    elif punkte >= 75:
+        print("75-89 Punkte = Gut")
+    elif punkte >= 50:
+        print("50-74 Punkte = Befriedigend")
+    elif punkte >= 30:
+        print("30-49 Punkte = Ausreichend")
+    else:
+        print("0-29 Punkte = Nicht bestanden")
+
+mindest_punkte = [90, 75, 50, 30, 0]
+
+print("Notenbewertung")
+
+# Führe die Funktion für jeden Wert in der Liste aus
+for punkt in mindest_punkte:
+    # Nur die Funktion wird aufgerufen, KEIN zusätzlicher print-Befehl!
+    noten(punkt)
