@@ -42,7 +42,7 @@ zahlen = [
 ]           #     ^ der Index
 
 # zugriff auf listenelement mittels index-operator:
-zahlen[3]
+zahlen[4]
 
 # Range
 
