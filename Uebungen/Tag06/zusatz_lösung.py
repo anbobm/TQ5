@@ -10,6 +10,7 @@
 # 'xyzyx'
 # '012343210'
 # '--------[]--------'
+# 'aabaa'
 
 # Schreibe ein Programm welches herausfindet,
 # ob ein bestimmter String ein Palindrom ist.
