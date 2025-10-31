@@ -265,3 +265,20 @@ for value in schueler.values():
 # in einer Schleife alle Items (Key-Value-Pairs) durchlaufen:
 for key, value in schueler.items():
     print(f'Der Wert zu dem Key {key} ist {value}')
+
+
+# Webseiten/-apps mit Flask
+
+from flask import Flask
+
+# Flask-Instanz erzeugen
+app = Flask(__name__)
+
+# Route '/', also die "Startseite", also z.B. example.com/, dann wird
+# diese Funktion aufgerufen
+@app.route('/')
+def hello():
+    return 'Hello World' # Im Browser steht dann Hello World
+
+# Flask App starten (Main loop wird ausgeführt, App wartet auf HTTP requests)
+app.run(debug=True)
