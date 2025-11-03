@@ -31,7 +31,11 @@ Aufgabe 3
 
 - Lege auf GitHub ein leeres Repository an.
 - Füge es mit "git remote add origin <URL>" hinzu.
-- Pushe mit "git push -u origin main".
+- Pushe mit "git push -u origin main". Achtung: Falls unser
+default branch nicht main heißt, sondern master,
+dann kommt es hier zu einem Fehler. Wir könnten den Branch
+dann in "main" umbenennen mit "git branch -M main". Danach
+funktioniert dann auch "git push -u origin main"
 - Füge auf GitHub direkt eine Datei hinzu.
 - Hole sie mit "git pull".
 - Ändere lokal etwas und pushe wieder mit "git push".
