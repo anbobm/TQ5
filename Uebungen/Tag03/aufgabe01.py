@@ -7,41 +7,24 @@
 # Zusatzaufgabe:
 # Gebt am Schluss eine Zusammenfassung aus, wie viele kleine, mittelgroße und große Zahlen in der Liste waren.
 
-zahlen = [1, 4, 9, 5, 10, 11]
+def klein_gross():
+    klein = 0
+    mittel = 0
+    gross = 0
 
-klein = 0
-mittel = 0
-gross = 0
+    for zahl in range(100):
+        # Reparatur mit if-elif-else
+        if zahl < 5:
+            klein = klein + 1
+            print(f'Die Zahl {zahl} ist klein')
+        elif zahl < 10:
+            mittel = mittel + 1
+            print(f'Die Zahl {zahl} ist mittelgroß')
+        else:
+            gross = gross + 1
+            print(f'Die Zahl {zahl} ist groß')
 
-for zahl in range(100):
-    # erster Ansatz. Problem mit z.B. Zahl 1. die ist klein und mittelgroß gleichzeitig. häää
-    # if zahl < 5:
-    #     print(f'Die Zahl {zahl} ist klein')
-    # if zahl < 10:
-    #     print(f'Die Zahl {zahl} ist mittelgroß')
-    # if zahl >= 10:
-    #     print(f'Die Zahl {zahl} ist groß')
-
-    # Reparaturvorschlag von Sönke, mit expliziteren Bedingungen
-    # if zahl < 5:
-    #     print(f'Die Zahl {zahl} ist klein')
-    # if zahl >= 5 and zahl < 10:
-    #     print(f'Die Zahl {zahl} ist mittelgroß')
-    # if zahl >= 10:
-    #     print(f'Die Zahl {zahl} ist groß')
-    
-    # Reparatur mit if-elif-else
-    if zahl < 5:
-        klein = klein + 1
-        print(f'Die Zahl {zahl} ist klein')
-    elif zahl < 10:
-        mittel = mittel + 1
-        print(f'Die Zahl {zahl} ist mittelgroß')
-    else:
-        gross = gross + 1
-        print(f'Die Zahl {zahl} ist groß')
-
-print('Zusammenfassung')
-print(f'Es gab {klein} kleine Zahlen')
-print(f'Es gab {mittel} mittelgroße Zahlen')
-print(f'Es gab {gross} große Zahlen')
+    print('Zusammenfassung')
+    print(f'Es gab {klein} kleine Zahlen')
+    print(f'Es gab {mittel} mittelgroße Zahlen')
+    print(f'Es gab {gross} große Zahlen')
