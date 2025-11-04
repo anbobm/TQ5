@@ -1,5 +1,5 @@
 import random
-
+# Diese Variante ist besser!
 class Bankkonto:
     # Eigenschaften:
         # Kontostand, Kontoinhaber, IBAN
