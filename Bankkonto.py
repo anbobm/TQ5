@@ -1,5 +1,5 @@
 import random
-
+# Neue Aenderung
 class Bankkonto:
     # Eigenschaften:
         # Kontostand, Kontoinhaber, IBAN
