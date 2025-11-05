@@ -1,3 +1,0 @@
-# Converted File
-
-Hallo mein Name ist...

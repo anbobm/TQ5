@@ -1,0 +1,22 @@
+Use Case Name: Essensbestellungs vorgang via App
+
+Akteure: Kunde, App
+
+Ziel: Essensbestellung, Nachhauselieferung
+
+Vorbedingungen: 
+    1. Kunde hat sich registriert
+    2. Kunde ist als Gast angemeldet
+Nachbedingungen:
+    1. Kunde sollte geld überwiesen haben
+    2. Kunde sollte benachrichtigt/bestätigt werden
+Hauptablauf: 
+    1. Der Kunde navigiert zur Essenauswahl
+    2. Kunde wählt das Essen aus was er will
+    3. Kunde wählt menge aus, scharf oder nicht scharf
+    4. Kunde klick auf weiter und gelangt zur adresseingabe
+    5. Kunde trägt adressdaten ein und klickt auf weiter zum bezahl bereich
+    6. Kunde bezahlt mit gewünschte mehtode
+    7. Kunde bekommt bestell und bezhal bestätigun per email und ausdruckbar als option
+Alternativabläufe:
+    1. 
