@@ -1,8 +1,0 @@
-Definiert euch eine Liste von ganzen Zahlen (um die 5 Stück).
-Diese Liste soll durchlaufen werden.
-Wenn die Zahl kleiner als 5 ist, soll ausgegeben werden "Die Zahl ... ist klein".
-Wenn die Zahl kleiner als 10 ist, soll ausgegeben werden "Die Zahl ... ist mittelgroß".
-Wenn die Zahl größer als 10 ist, soll ausgegeben werden "Die Zahl ... ist groß".
-
-Zusatzaufgabe:
-Gebt am Schluss eine Zusammenfassung aus, wie viele kleine, mittelgroße und große Zahlen in der Liste waren.
