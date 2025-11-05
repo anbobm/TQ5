@@ -1,0 +1,32 @@
+Autor: Timo Röhle
+Datum: 05.11.2025
+Übung zu Use Case
+
+Das gewählte Szenario ist "Essensbestellungs-App für ein Restaurant"
+
+Name: Änderungen der Speisekarte
+Akteure: Admin, Server, Datenbank
+Ziel: 
+    Der Administrator kann Änderungen an der Speisekarte vornehmen.
+    Gerichte hinzufügen/entfernen.
+    Preise ändern.
+Vorbedingungen:
+    Administratorkonsole.
+    Eingabemasken für die relevanten Informationen.
+    Datenbank / Tabellen müssen angelegt sein.
+    Eingabemaske muss mit dem Backend und der Datenbank verbunden sein.
+Nachbedingung:
+    Neue Gerichte erscheinen auf der Speisekarte.
+    Entfernte Gerichte werden nicht mehr auf der Speisekarte angezeigt.
+    Aktualisierte Preise werden auf der Speisekarte dargestellt.
+Hauptablauf:
+    Administrator loggt sich in die Adminkonsole ein.
+    Administrator wählt das Gericht aus, welches er modifizieren will.
+    Administrator nimmt über die bereitgestellte Eingabemaske die gewünschten Änderungen vor.
+    Administrator speichert die Änderungen per Knopfdruck.
+Alternativabläufe:
+    Login nicht möglich wegen falschen Eingaben
+        Fehlermeldung + Neuer Versuch
+Ausnahmen:
+    Vergessene Anmeldedaten
+    Keine Verbindung zum Backend / Datenbank

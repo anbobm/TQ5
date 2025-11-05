@@ -1,0 +1,33 @@
+Autor: Timo Röhle
+Datum: 05.11.2025
+User Story Übung
+
+Das gewählte Szenario ist "Online-Shop für Bücher"
+
+[Story 1]
+Titel: Hinzufügen eines neuen Buches
+Beschreibung:
+    Als Adminstrator möchte ich ein neues Buch hinzufügen können,
+    damit die Kunden das neue Buch sehen und kaufen können.
+Akzeptanzkriterien:
+    Der Admnistrator kann die Informationen zu einem neuen Buch eingeben.
+        Titel
+        Kurzbeschreibung
+        Bestellnummer
+        Preis
+        Ein Bild des Covers
+    Nach dem speichern ist das neue Buch für die Kunden sichtbar und kann bestellt werden.
+
+[Story 2]
+Titel: Umsatzstatistiken
+Beschreibung:
+    Als Administrator möchte ich in der Lage sein diverse Statistiken über den generierten Umsatz 
+    zu sehen, damit der Verkaufsprozess optimiert werden kann.
+Akzeptanzkriterien:
+    Umsatz aufgeschlüsselt nach Buchtitel
+    Umsatz aufgeschlüsselt nach Autor
+    Umsatz aufgeschlüsselt nach Kunde
+    Sortierbar nach Top / Flop
+    Anzeige in Zahlen und Diagrammen
+    Möglichkeit "Außreißer" auszufiltern
+
