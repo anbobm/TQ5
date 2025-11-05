@@ -1,0 +1,57 @@
+Hauptaktuer:    
+
+Kunde bestellt essen
+Sekdundäreaktuere: 
+Restaurant empfängt bestellung und leitet es an die Küche weiter
+Köche empfangen bestellung für die Zubereitung
+Lieferant empfängt Lieferauftrag und bestätigt diesen
+
+Vorbereitung:
+
+Kunde ist in der App eingeloggt
+Restaurant empfängt bestellung
+Eine stabile internetverbung notwendig
+
+Nachbedingungen:
+
+Die Bestellung des Kunden wurde erfolgreich im System registiert
+Der Kunde erhält eine bestellbestätigung des Restaurants
+Die Küche erhält die Bestellung und setzt die Zubereitung um
+Der Kurier erhält den Lieferauftrag und bestätigt diesen und setzt ihn um
+
+Hauptablauf:
+
+Kunde loggt sich in Kundenaccount ein oder ist schon eingeloggt
+App lässt sich die Speisekarte aufrufen
+Kunde legt Speisen in den Warenkorb
+Kunde überprüft den Warenkorb und bestätigt diesen mit "Zur Kasse"
+System zeigt zusammenfassung und kann Lieferadresse und Zahlungsmethode bearbeiten 
+(Speisen, Preis, Lieferadresse, Zahlungsmethode)
+Kunde bestätigt die Bestellung
+Das System führt die Zahlung mit der Zahlungsmethode durch.
+Nach erfolgreicher Zahlung sendet das System dem Kunden die Bestellbestätigung
+Das System sendet die Daten an das Restaurant
+Das Restaurant sendet der Küche die Bestell-Liste
+Die bestellung wird auf "in bearbeitung" & die ungefähre lieferzeit wird angezeigt
+Bei der lieferung wird das System vom lieferservice informiert das die bestellung geliefert wurde
+
+
+Anternativabläufe:
+
+Gastbestellung (ohne login)
+Der kunde kann als Gast bestellen, muss aber Zahlungsmethode & Lieferadresse manuell auswählen
+Abholung statt Lieferung
+Der Kunde wählt Abholung das System überspringt Lieferdetails und informiert nur die Küche.
+Rabatt- oder Gutscheincode wird verwendet
+Der Kunde gibt einen Gutscheincode ein, das System berechnet den neuen Gesamtpreis.
+    
+Ausnahmen:
+
+Zahlung fehlgeschlagen:
+Das System zeigt eine Fehlermeldung an und fordert den Kunden auf, eine andere Zahlungsmethode zu wählen.
+Gericht nicht verfügbar:
+Das System informiert den Kunden, dass ein Artikel nicht verfügbar ist, und bietet Alternativen an.
+Verbindungsfehler:
+Die App kann die Bestellung nicht abschließen; der Kunde erhält eine Benachrichtigung über den Fehler.
+Restaurant geschlossen:
+Das System erlaubt keine Bestellung und zeigt die Öffnungszeiten an.
