@@ -2,7 +2,7 @@
 
 Sortiere die folgende Nicht-funktionale Anforderungen mit das Kano-Modell. 
 
-![Kano Modell](../Misc_Dateien/Kano.png)
+![Kano Modell](Misc_Dateien/Kano.png)
 
 
 
