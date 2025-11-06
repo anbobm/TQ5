@@ -4,7 +4,7 @@
 Ein Kino möchte ein Online-System einführen, über das Kunden Kinotickets kaufen können.
 
 
-## Rahmenbedingungen:  
+## Rahmenbedingungen:
 
 ### Das System soll Folgendes ermöglichen:
 
