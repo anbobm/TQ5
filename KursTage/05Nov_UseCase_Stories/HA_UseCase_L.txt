@@ -5,7 +5,7 @@ Akteure: Kunde, App
 Ziel: Essensbestellung, Nachhauselieferung
 
 Vorbedingungen: 
-    1. Kunde hat sich registriert
+    1. Kunde hat sich registriert/Login
     2. Kunde ist als Gast angemeldet
 Nachbedingungen:
     1. Kunde sollte geld überwiesen haben
