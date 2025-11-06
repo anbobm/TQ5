@@ -1,0 +1,45 @@
+Basisfaktoren (Must-be Attributes): Diese Anforderungen werden von den Nutzern vorausgesetzt. Ihr Fehlen führt zu Unzufriedenheit.
+
+Die App soll auf Android und iOS verfügbar sein.
+
+Die App soll Datenschutz nach DSGVO gewährleisten.
+
+Die Benutzeroberfläche soll intuitiv und leicht verständlich sein.
+
+Das System soll bei normaler Nutzung keine Abstürze verursachen.
+
+Leistungsfaktoren (One-dimensional Attributes): Je besser diese Anforderungen erfüllt sind, desto zufriedener sind die Nutzer.
+
+Die App soll innerhalb von 2 Sekunden starten.
+
+Der Akkuverbrauch soll so gering wie möglich sein.
+
+Die App soll offline funktionieren, auch ohne Internetverbindung.
+
+Alle Daten sollen automatisch in der Cloud gesichert werden.
+
+Die App soll in mehreren Sprachen verfügbar sein.
+
+Die App soll Benachrichtigungen in Echtzeit senden.
+
+Begeisterungsfaktoren (Attractive Attributes): Diese Merkmale überraschen positiv, werden aber nicht unbedingt erwartet.
+
+Die App soll keine Werbung enthalten.
+
+Das Design soll modern und ansprechend wirken.
+
+Nutzer sollen sich per Fingerabdruck oder Gesichtserkennung anmelden können.
+
+Die App soll dunklen Modus (Dark Mode) unterstützen.
+
+Die App soll kostenlos sein.
+
+Unerhebliche Faktoren (Indifferent Attributes): Diese Punkte haben wenig Einfluss auf die Zufriedenheit – sie werden kaum wahrgenommen.
+
+Keine der genannten Anforderungen fällt eindeutig in diese Kategorie.
+
+Rückweisungsfaktoren (Reverse Attributes): Wenn diese Eigenschaften vorhanden sind, führen sie zu Unzufriedenheit.
+
+Werbung enthalten (implizit abgelehnt durch „keine Werbung“)
+
+Kostenpflichtigkeit (implizit abgelehnt durch „kostenlos“)
