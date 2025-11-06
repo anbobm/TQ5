@@ -29,3 +29,32 @@ if palindrom:
     print('Palindrom!')
 else:
     print('Kein Palindrom')
+
+
+# Alternative Lösung mit string-umkehrung
+
+def umgekehrt(str):
+    r = ''
+    for s in str:
+        r = s + r
+
+    return r
+
+if teststring == umgekehrt(teststring):
+    print('Palindrom')
+else:
+    print('Kein Palindrom')
+
+
+# "clevere" Lösung mittels slices [::]
+
+# slice: gibt eine Teilliste zurück
+# liste[start:stop:step] gibt liste zurück, aber
+# nur von start-index bis stop-index (exklusive stop-index)
+# mit schrittgröße step
+# [::-1] bedeutet von anfang bis ende aber rückwärts (-1)
+
+if teststring == teststring[::-1]:
+    print('Palindrom')
+else:
+    print('kein Palindrom')
