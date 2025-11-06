@@ -1,7 +1,6 @@
-Hauptaktuer:    
+Hauptaktuer: Kunde
 
 Kunde bestellt essen
-Sekdundäreaktuere: 
 Restaurant empfängt bestellung und leitet es an die Küche weiter
 Köche empfangen bestellung für die Zubereitung
 Lieferant empfängt Lieferauftrag und bestätigt diesen
