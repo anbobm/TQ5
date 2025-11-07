@@ -1,0 +1,203 @@
+/**
+ * Original
+ */
+
+FUNCTION AddTask
+    string description := ""
+    ZEIGE "Enter task description:"
+    EINGABE description
+
+    INPUT "Enter due date (YYYY-MM-DD): " AS dueDate
+    INPUT "Enter priority (1-5): " AS priority
+
+    DISPLAY "Task added successfully."
+END FUNCTION
+
+/**
+ * Aufgabe 1)
+ * Übersetzung in IHK zugelassenen Pseudocode
+ */
+
+funktion AddTask
+    string description := ""
+    ZEIGE "Enter task description:"
+    EINGABE description
+
+    string dueDate := ""
+    ZEIGE "Enter due date (YYYY-MM-DD):"
+    EINGABE dueDate
+
+    string priority := ""
+    ZEIGE "Enter priority (1-5):"
+    EINGABE priority
+
+    ZEIGE "Task added successfully."
+Ende funktion
+
+/**
+ * Aufgabe 2)
+ * Original
+ */
+
+FUNCTION EditTask
+    INPUT "Enter task number to edit: " AS taskNumber
+    IF taskNumber IS valid THEN
+        INPUT "Enter new description: " AS description
+        INPUT "Enter new due date (YYYY-MM-DD): " AS dueDate
+        INPUT "Enter new priority (1-5): " AS priority
+        DISPLAY "Task updated successfully."
+    ELSE
+        DISPLAY "Invalid task number."
+    END IF
+END FUNCTION
+
+/**
+ * Aufgabe 2)
+ * Übersetzung in IHK zugelassenen Pseudocode
+ */
+
+funktion EditTask
+    string taskNumber := ""
+    ZEIGE "Enter task number to edit: "
+    EINGABE taskNumber
+    wenn taskNumber = valid dann
+        string description := ""
+        ZEIGE "Enter new description: "
+        EINGABE description
+
+        string dueDate := ""
+        ZEIGE "Enter new due date (YYYY-MM-DD): "
+        EINGABE dueDate
+
+        string priority := ""
+        ZEIGE "Enter new priority (1-5): "
+        EINGABE priority
+
+        ZEIGE "Task updated successfully."
+    sonst
+        ZEIGE "Invalid task number."
+    Ende wenn
+Ende funktion
+
+
+/**
+ * Aufgabe 3)
+ * Original
+ */
+
+FUNCTION DeleteTask
+    INPUT "Enter task number to delete: " AS taskNumber
+    IF taskNumber IS "valid" THEN
+        DISPLAY "Task deleted successfully."
+    ELSE
+        DISPLAY "Invalid task number."
+    END IF
+END FUNCTION
+
+/**
+ * Aufgabe 3)
+ * Lösung
+ */
+
+funktion DeleteTask
+    string taskNumber := ""
+    ZEIGE "Enter task number to delete: "
+    EINGABE taskNumber
+
+    wenn taskNumber = "valid" dann
+        ZEIGE "Task deleted successfully."
+    sonst 
+        ZEIGE "Invalid task number."
+    Ende wenn
+Ende funktion
+
+/**
+ * Aufgabe 4)
+ * Original
+ */
+
+FUNCTION MarkTaskCompleted
+    INPUT "Enter task number to mark as completed: " AS taskNumber
+    IF taskNumber IS "valid" THEN
+        DISPLAY "Task marked as completed."
+    ELSE
+        DISPLAY "Invalid task number."
+    END IF
+END FUNCTION
+
+/**
+ * Aufgabe 4)
+ * Lösung 
+ */
+
+funktion MarkTaskCompleted
+    string taskNumber := ""
+    ZEIGE "Enter task number to mark as completed: "
+    EINGABE taskNumber
+    wenn taskNumber = "valid" dann
+        ZEIGE "Task marked as completed."
+    dann
+        ZEIGE "Invalid task number."
+    Ende wenn
+Ende funktion
+
+/**
+ * Aufgabe 5)
+ * Original 
+ */
+
+FUNCTION SortTasks
+    DISPLAY "Sort by: "
+    DISPLAY "1. Due Date"
+    DISPLAY "2. Priority"
+    INPUT sortChoice
+    SWITCH sortChoice
+        CASE "1":
+            SORT TaskList BY dueDate
+        CASE "2":
+            SORT TaskList BY priority
+        DEFAULT:
+            DISPLAY "Invalid choice."
+    END SWITCH
+END FUNCTION
+
+/**
+ * Aufgabe 5)
+ * Lösung 
+ */
+
+funktion SortTasks(array TaskList)
+    ZEIGE "Sort by: "
+    ZEIGE "1. Due Date"
+    ZEIGE "2. Priority"
+    string sortChoice := ""
+    EINGABE sortChoice
+    wenn sortChoice = "1" dann
+       SORTIERE TaskList NACH dueDate
+    sonst wenn sortChoice = "2"
+       SORTIERE TaskList NACH priority
+    sonst
+        ZEIGE "Invalid choice."
+    Ende wenn
+Ende funktion
+
+/**
+ * Aufgabe 6)
+ */
+
+double Grundgehalt
+integer Ueberstunden
+double Bonus
+integer Betriebszugehoerigkeit
+
+wenn Ueberstunden > 10 dann
+    Bonus = 200.0
+sonst wenn Betriebgszugehoerigkeit > 5 dann
+    Bonus = 100.0
+sonst
+    Bonus = 0
+Ende wenn
+
+Grundgehalt = Grundgehalt + Bonus
+
+ZEIGE Grundgehalt
