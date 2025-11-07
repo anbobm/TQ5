@@ -1,0 +1,20 @@
+Variable:
+    Grundgehalt double
+    Ueberstunden integer
+    Bonus double
+    Betriebszugehoerigkeit integer
+
+funktion Gehaelter(Grundgehalt, Ueberstunden, Betriebszugehoerigkeit)
+
+    wenn Ueberstunden > 10 dann
+        Bonus = 200.0
+    sonst wenn Betriebgszugehoerigkeit > 5 dann
+        Bonus = 100.0
+    sonst
+        Bonus = 0
+    Ende wenn
+
+    Grundgehalt = Grundgehalt + Bonus
+
+    ZEIGE Grundgehalt
+Ende funktion
