@@ -1,0 +1,122 @@
+1.
+    array TaskList := []
+    string userChoice := ""
+        
+        solange userChoice <> "7"
+
+            ZEIGE "1. Add Task"
+            ZEIGE "2. Edit Task"
+            ZEIGE "3. Delete Task"
+            ZEIGE "4. Mark Task as Completed"
+            ZEIGE "5. View Tasks"
+            ZEIGE "6. Sort Tasks"
+            ZEIGE "7. Exit"
+
+            EINGABE userChoice
+
+            wenn userChoice = "1" dann
+                RUFE AddTask AUF
+            sonst wenn userChoice = "2" dann
+                RUFE EditTask AUF
+            sonst wenn userChoice = "3" dann
+                RUFE DeleteTask AUF
+            sonst wenn userChoice = "4" dann
+                RUFE MarkTaskCompleted AUF
+            sonst wenn userChoice = "5" dann
+                RUFE ViewTasks AUF
+            sonst wenn userChoice = "6" dann
+                RUFE SortTasks AUF
+            sonst wenn userChoice = "7" dann
+                RUFE DeleteTask AUF
+            sonst
+                ZEIGE "Invalid choice. Please try again."
+            Ende wenn
+        Ende solange
+
+2. 
+funktion AddTask
+        string description := ""
+        ZEIGE "Enter task description:"
+        EINGABE description
+ 
+        string dueDate := ""
+        ZEIGE "Enter due date (YYYY-MM-DD):"
+        EINGABE dueDate
+ 
+        string priority := ""
+        ZEIGE "Enter priority (1-5):"
+        EINGABE priority
+ 
+        ZEIGE "Task added successfully"
+    Ende funktion
+
+
+
+3.
+    funktion EditTask
+        string taskNumber := ""
+        ZEIGE "Enter task number to edit: "
+        EINGABE taskNumber
+
+        wenn UEBERPRUEFE taskNumber dann
+            string beschreibung := ""
+            ZEIGE "Enter new description: "
+            EINGABE beschreibung
+
+            string dueDate := ""
+            ZEIGE "Enter new due date (YYYY-MM-DD): "
+            EINGABE dueDate
+
+            string priorität := ""
+            ZEIGE "Enter new priority (1-5): "
+            EINGABE priorität
+
+            ZEIGE "Task updated successfully."
+        sonst
+            ZEIGE "Invalid task number."
+        Ende wenn
+    Ende funktion
+
+
+
+4.
+    funktion DeleteTask
+        string taskNumber := ''
+        ZEIGE 'Enter task number to delete:'
+        EINGABE taskNumber
+ 
+        wenn taskNumber = 'valid' dann
+            ZEIGE 'Task deleted successfully'
+        sonst
+            ZEIGE 'Invalid task number.'
+        Ende wenn
+    Ende funktion
+
+
+5.
+funktion MarkTaskCompleted
+    string taskNumber:= ""
+    ZEIGE "Enter task number to mark as completed: "
+    EINGABE taskNumber
+ 
+    wenn taskNumber = "valid" dann 
+        ZEIGE "Enter task number to mark as completed: "
+    sonst
+        ZEIGE "Invalid task number."
+    Ende wenn 
+Ende funktion
+
+
+6.
+funktion SortTasks
+    ZEIGE "Sort by: "
+    ZEIGE "1. Due Date"
+    ZEIGE "2. Priority"
+    string sortChoice := ''
+    EINGABE userChoice
+    wenn userChoice = “1“ dann
+        sortiere Tasklist nach dueDate
+    wenn userChoice = “s“ dann
+        sortiere Tasklist nach priority
+    Ende wenn
+Ende funktion

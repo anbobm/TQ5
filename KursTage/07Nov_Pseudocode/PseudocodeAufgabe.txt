@@ -1,0 +1,88 @@
+    FUNCTION Main
+        INITIALIZE TaskList as empty list
+        WHILE (True)
+            DISPLAY "1. Add Task"
+            DISPLAY "2. Edit Task"
+            DISPLAY "3. Delete Task"
+            DISPLAY "4. Mark Task as Completed"
+            DISPLAY "5. View Tasks"
+            DISPLAY "6. Sort Tasks"
+            DISPLAY "7. Exit"
+            INPUT userChoice
+            SWITCH userChoice
+                CASE 1:
+                    CALL AddTask
+                CASE 2:
+                    CALL EditTask
+                CASE 3:
+                    CALL DeleteTask
+                CASE 4:
+                    CALL MarkTaskCompleted
+                CASE 5:
+                    CALL ViewTasks
+                CASE 6:
+                    CALL SortTasks
+                CASE 7:
+                    EXIT
+                DEFAULT:
+                    DISPLAY "Invalid choice. Please try again."
+            END SWITCH
+        END WHILE
+    END FUNCTION
+
+    FUNCTION AddTask
+        string description := ""
+        ZEIGE "Enter task description:"
+        EINGABE description
+
+        INPUT "Enter due date (YYYY-MM-DD): " AS dueDate
+        INPUT "Enter priority (1-5): " AS priority
+
+        DISPLAY "Task added successfully."
+    END FUNCTION
+
+    FUNCTION EditTask
+        INPUT "Enter task number to edit: " AS taskNumber
+        IF taskNumber IS valid THEN
+            INPUT "Enter new description: " AS description
+            INPUT "Enter new due date (YYYY-MM-DD): " AS dueDate
+            INPUT "Enter new priority (1-5): " AS priority
+            DISPLAY "Task updated successfully."
+        ELSE
+            DISPLAY "Invalid task number."
+        END IF
+    END FUNCTION
+
+    FUNCTION DeleteTask
+        INPUT "Enter task number to delete: " AS taskNumber
+        IF taskNumber IS "valid" THEN
+            DISPLAY "Task deleted successfully."
+        ELSE
+            DISPLAY "Invalid task number."
+        END IF
+    END FUNCTION
+
+    FUNCTION MarkTaskCompleted
+        INPUT "Enter task number to mark as completed: " AS taskNumber
+        IF taskNumber IS "valid" THEN
+            DISPLAY "Task marked as completed."
+        ELSE
+            DISPLAY "Invalid task number."
+        END IF
+    END FUNCTION
+
+
+    FUNCTION SortTasks
+        DISPLAY "Sort by: "
+        DISPLAY "1. Due Date"
+        DISPLAY "2. Priority"
+        INPUT sortChoice
+        SWITCH sortChoice
+            CASE "1":
+                SORT TaskList BY dueDate
+            CASE "2":
+                SORT TaskList BY priority
+            DEFAULT:
+                DISPLAY "Invalid choice."
+        END SWITCH
+    END FUNCTION
