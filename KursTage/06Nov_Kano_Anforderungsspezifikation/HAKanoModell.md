@@ -2,7 +2,9 @@
 
 Sortiere die folgende Nicht-funktionale Anforderungen mit das Kano-Modell. 
 
-![Kano Modell](Misc_Dateien\KanoModell.png)
+![Kano Modell](../../Misc_Dateien/Kano.png)
+
+
 
 
 ## Nicht-funktionale Anforderungen für eine kleine App (z. B. Aufgabenplaner oder Notiz-App)
