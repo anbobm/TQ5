@@ -46,3 +46,8 @@ while index < len(liste):
         anzahl += 1
     index += 1
 print(anzahl)
+
+
+print('Anzahl: ' + str(anzahl))
+print('Anzahl: ', anzahl)
+# 'Anzahl: ' + str(anzahl)

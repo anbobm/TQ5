@@ -30,7 +30,7 @@ EINGABE note1
 EINGABE note2
 EINGABE note3
 
-durchschnitt ← (note1 + note2 + note3) / 3
+durchschnitt := (note1 + note2 + note3) / 3
 
 AUSGABE "Der Durchschnitt ist: ", durchschnitt
 
