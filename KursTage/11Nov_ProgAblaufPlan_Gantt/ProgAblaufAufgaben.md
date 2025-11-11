@@ -1,4 +1,4 @@
-Aufgabenbeschreibung:
+## Aufgabenbeschreibung:
 
 Ein Programm soll den Gesamtpreis einer Bestellung berechnen.
 Der Benutzer gibt zuerst ein, wie viele Artikel er kaufen möchte.
@@ -6,16 +6,17 @@ Für jeden Artikel wird der Einzelpreis eingegeben und aufsummiert.
 
 Am Ende wird abhängig vom Gesamtpreis ein Rabatt berechnet:
 
-Ab 100 € → 10 % Rabatt
+* Ab 100 € → 10 % Rabatt
 
-Ab 200 € → 20 % Rabatt
+* Ab 200 € → 20 % Rabatt
 
-Unter 100 € → kein Rabatt
+* Unter 100 € → kein Rabatt
 
 Das Programm soll den Endpreis nach Rabatt ausgeben.
 
-Pseudocode:
+## Pseudocode:
 
+```python
 EINGABE artikelanzahl
 summe := 0
 i := 1
@@ -39,16 +40,20 @@ endpreis := summe - rabatt
 AUSGABE "Gesamtpreis vor Rabatt: ", summe
 AUSGABE "Rabatt: ", rabatt
 AUSGABE "Endpreis: ", endpreis
+```
 
 ========================================================
 
-Aufgabenbeschreibung:
+## Aufgabenbeschreibung:
 
 Ein Bankautomat prüft die eingegebene PIN.
 Der Benutzer hat maximal drei Versuche, um die richtige PIN einzugeben.
 Ist die Eingabe korrekt, wird „Zugang gewährt“ ausgegeben.
 Nach drei falschen Eingaben erscheint „Karte gesperrt“.
 
+## Pseudocode:
+
+```python
 richtige_pin := 1234
 versuche := 0
 eingeloggt := FALSCH
@@ -67,3 +72,4 @@ WENN eingeloggt = WAHR DANN
 SONST
     AUSGABE "Karte gesperrt"
 ENDE WENN
+```
