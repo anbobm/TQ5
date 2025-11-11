@@ -12,12 +12,12 @@ ENDE WENN
 
 Aufgabe 2:
 
-summe ← 0
-i ← 1
+summe := 0
+i := 1
 
 SOLANGE i <= 5 WIEDERHOLE
-    summe ← summe + i
-    i ← i + 1
+    summe := summe + i
+    i := i + 1
 ENDE SOLANGE
 
 AUSGABE "Summe ist: ", summe
@@ -30,49 +30,8 @@ EINGABE note1
 EINGABE note2
 EINGABE note3
 
-durchschnitt ← (note1 + note2 + note3) / 3
+durchschnitt := (note1 + note2 + note3) / 3
 
 AUSGABE "Der Durchschnitt ist: ", durchschnitt
 
 ============================================================
-
-Aufgabe 4:
-
-Aufgabenbeschreibung:
-
-Ein Programm soll die Durchschnittsnote einer Klasse berechnen.
-Zuerst wird eingegeben, wie viele Schüler bewertet werden sollen.
-Dann gibt der Benutzer für jeden Schüler eine Note (zwischen 1 und 6) ein.
-Am Ende wird der Durchschnitt berechnet und eine Bewertung ausgegeben:
-
-1. Durchschnitt < 2 → „Sehr gut“
-
-2. Durchschnitt < 3 → „Gut“
-
-3. Durchschnitt < 4 → „Befriedigend“
-
-4. Sonst → „Verbesserungswürdig“
-
-Pseudocode:
-
-EINGABE anzahl_schueler
-summe ← 0
-i ← 1
-
-SOLANGE i <= anzahl_schueler WIEDERHOLE
-    EINGABE note
-    summe ← summe + note
-    i ← i + 1
-ENDE SOLANGE
-
-durchschnitt ← summe / anzahl_schueler
-
-WENN durchschnitt < 2 DANN
-    AUSGABE "Sehr gut"
-SONST WENN durchschnitt < 3 DANN
-    AUSGABE "Gut"
-SONST WENN durchschnitt < 4 DANN
-    AUSGABE "Befriedigend"
-SONST
-    AUSGABE "Verbesserungswürdig"
-ENDE WENN

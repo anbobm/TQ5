@@ -1,0 +1,75 @@
+## Aufgabenbeschreibung:
+
+Ein Programm soll den Gesamtpreis einer Bestellung berechnen.
+Der Benutzer gibt zuerst ein, wie viele Artikel er kaufen möchte.
+Für jeden Artikel wird der Einzelpreis eingegeben und aufsummiert.
+
+Am Ende wird abhängig vom Gesamtpreis ein Rabatt berechnet:
+
+* Ab 100 € → 10 % Rabatt
+
+* Ab 200 € → 20 % Rabatt
+
+* Unter 100 € → kein Rabatt
+
+Das Programm soll den Endpreis nach Rabatt ausgeben.
+
+## Pseudocode:
+
+```python
+EINGABE artikelanzahl
+summe := 0
+i := 1
+
+SOLANGE i <= artikelanzahl WIEDERHOLE
+    EINGABE einzelpreis
+    summe := summe + einzelpreis
+    i := i + 1
+ENDE SOLANGE
+
+WENN summe >= 200 DANN
+    rabatt := summe * 0.20
+SONST WENN summe >= 100 DANN
+    rabatt := summe * 0.10
+SONST
+    rabatt := 0
+ENDE WENN
+
+endpreis := summe - rabatt
+
+AUSGABE "Gesamtpreis vor Rabatt: ", summe
+AUSGABE "Rabatt: ", rabatt
+AUSGABE "Endpreis: ", endpreis
+```
+
+========================================================
+
+## Aufgabenbeschreibung:
+
+Ein Bankautomat prüft die eingegebene PIN.
+Der Benutzer hat maximal drei Versuche, um die richtige PIN einzugeben.
+Ist die Eingabe korrekt, wird „Zugang gewährt“ ausgegeben.
+Nach drei falschen Eingaben erscheint „Karte gesperrt“.
+
+## Pseudocode:
+
+```python
+richtige_pin := 1234
+versuche := 0
+eingeloggt := FALSCH
+
+SOLANGE versuche < 3 UND eingeloggt = FALSCH WIEDERHOLE
+    EINGABE pin
+    versuche := versuche + 1
+
+    WENN pin = richtige_pin DANN
+        eingeloggt := WAHR
+    ENDE WENN
+ENDE SOLANGE
+
+WENN eingeloggt = WAHR DANN
+    AUSGABE "Zugang gewährt"
+SONST
+    AUSGABE "Karte gesperrt"
+ENDE WENN
+```
