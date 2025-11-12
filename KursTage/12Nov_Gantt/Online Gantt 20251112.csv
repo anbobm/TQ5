@@ -1,0 +1,10 @@
+Outline Level,ID,Name,Start,Finish,Duration,% Complete,Predecessors,Resource Names,Color,Notes
+1,1,"Kick-off-Meeting",2025-11-10,2025-11-10,1 day,0,"","",31,"<p><br></p>"
+1,2,"Anforderungsanalyse",2025-11-11,2025-11-14,4 day,0,"1FS","",91,"<p><br></p>"
+1,3,"Markt- und Produktauswahl",2025-11-17,2025-11-21,5 day,0,"2FS","",211,"<p><br></p>"
+1,4,"Beschaffung und Lizenzierung",2025-11-24,2025-11-26,3 day,0,"3FS","",271,"<p><br></p>"
+1,5,"Installation und technische Einrichtung",2025-11-27,2025-12-05,7 day,0,"4FS","",31,"<p><br></p>"
+1,6,"Erstellung der Benutzerdokumentation",2025-11-27,2025-12-04,6 day,0,"5SS","",61,"<p><br></p>"
+1,7,"Test- und Fehlerkorrekturphase",2025-12-08,2025-12-12,5 day,0,"5FS","",91,"<p><br></p>"
+1,8," Mitarbeiterschulung",2025-12-15,2025-12-17,3 day,0,"7FS","",301,"<p><br></p>"
+1,9,"Abschlussbesprechung",2025-12-18,2025-12-19,2 day,0,"8FS","",,"<p><br></p>"
