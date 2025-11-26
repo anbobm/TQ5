@@ -39,6 +39,6 @@ while True:
     nochmal = input("Nochmal spielen? (j/n): ").strip().lower()
 
     if nochmal != "j":
-        print("Dann eben nicht... Spiel wird beendet.")
+        print("Dann nicht... Spiel wird beendet.")
         break
 
