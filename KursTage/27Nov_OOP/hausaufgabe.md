@@ -8,7 +8,7 @@ Zeichne ein Sequenzdiagramm für `bankkonto_mit_bank.py`, so wie wie `sequenzdia
 
 #### Aufgabe 3
 
-In einer Banksoftware sollen zwei verschiedene Kontotypen mittels Klassen abgebildet werden. Alle Bankkonten haben die Methode Attribute Kontonummer und Kontostand und die Methoden `einzahlen(betrag)`, `auszahlen(betrag)` und eine Methode `info()`, welche Informationen zum Konto ausgibt.
+In einer Banksoftware sollen zwei verschiedene Kontotypen mittels Klassen abgebildet werden. Alle Bankkonten haben die Attribute Kontonummer und Kontostand und die Methoden `einzahlen(betrag)`, `auszahlen(betrag)` und eine Methode `info()`, welche Informationen zum Konto ausgibt.
 
 ##### Sparkonto
 
