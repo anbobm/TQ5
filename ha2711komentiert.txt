@@ -1,0 +1,173 @@
+# --------------------------------------------
+# Klasse Bankkonto (Basis / Eltern-Klasse)
+# --------------------------------------------
+class Bankkonto:
+    def __init__(self, kontonummer, kontostand=0):
+        # Jede Bankkonto-Instanz bekommt eine Kontonummer und einen Startkontostand
+        self.kontonummer = kontonummer
+        self.kontostand = kontostand
+    
+    def einzahlen(self, betrag):
+        # Diese Methode fügt dem Konto Geld hinzu
+        # Betrag muss positiv sein, sonst Fehler
+        if betrag <= 0:
+            raise ValueError("Der Einzahlungsbetrag muss positiv sein.")
+        
+        # Kontostand erhöhen
+        self.kontostand += betrag
+        print(f"€{betrag:.2f} eingezahlt. Neuer Kontostand: €{self.kontostand:.2f}")
+
+    def auszahlen(self, betrag):
+        # Diese Methode existiert hier nur als Vorlage,
+        # wird aber in den Unterklassen überschrieben.
+        raise NotImplementedError("Diese Methode wird in Unterklassen überschrieben.")
+
+    def abheben(self, betrag):
+        # Alias (zweiter Name) für auszahlen()
+        return self.auszahlen(betrag)
+    
+    def info(self):
+        # Gibt einfache Informationen über das Konto zurück
+        return f"Konto {self.kontonummer}: €{self.kontostand:.2f}"
+
+
+# --------------------------------------------
+# Klasse Sparkonto (Kind-Klasse)
+# Erbt von Bankkonto
+# --------------------------------------------
+class Sparkonto(Bankkonto):
+    def __init__(self, kontonummer, kontostand=0, zinssatz=0.01):
+        # Ruft Konstruktor der Elternklasse auf
+        super().__init__(kontonummer, kontostand)
+        # Speichert Zinssatz, z. B. 0.02 = 2 %
+        self.zinssatz = zinssatz
+    
+    def auszahlen(self, betrag):
+        # Geld vom Sparkonto abheben
+        if betrag <= 0:
+            raise ValueError("Der Auszahlungsbetrag muss positiv sein.")
+        
+        # Sparkonten dürfen nur auszahlen, wenn genug Geld drauf ist
+        if self.kontostand >= betrag:
+            self.kontostand -= betrag
+            print(f"€{betrag:.2f} ausgezahlt. Neuer Kontostand: €{self.kontostand:.2f}")
+            return True
+        
+        # Falls nicht genug Geld da ist → Fehler
+        raise ValueError(f"Nicht genügend Guthaben! Verfügbar: €{self.kontostand:.2f}")
+    
+    def zinsen_gutschreiben(self):
+        # Berechnet die Zinsen basierend auf dem aktuellen Kontostand
+        zinsen = self.kontostand * self.zinssatz
+        # Fügt die Zinsen hinzu
+        self.kontostand += zinsen
+        print(f"Zinsen gutgeschrieben: €{zinsen:.2f}. Neuer Kontostand: €{self.kontostand:.2f}")
+    
+    def info(self):
+        # Gibt genauere Infos aus, inkl. Zinssatz
+        return f"Sparkonto {self.kontonummer}: €{self.kontostand:.2f}, Zinssatz: {self.zinssatz * 100}%"
+
+
+# --------------------------------------------
+# Klasse Girokonto (Kind-Klasse)
+# Girokonten dürfen ins Minus gehen → Überziehungsrahmen
+# --------------------------------------------
+class Girokonto(Bankkonto):
+    def __init__(self, kontonummer, kontostand=0, ueberziehungsrahmen=1000):
+        # Konstruktor der Elternklasse aufrufen
+        super().__init__(kontonummer, kontostand)
+        # Speichert, wie viel das Konto überzogen werden darf
+        self.ueberziehungsrahmen = ueberziehungsrahmen
+    
+    def auszahlen(self, betrag):
+        # Geld vom Girokonto abheben
+        if betrag <= 0:
+            raise ValueError("Der Auszahlungsbetrag muss positiv sein.")
+        
+        # Prüfen, ob die Auszahlung möglich ist
+        # Beispiel: Kontostand 500, überziehen bis -1000 → 1500 € verfügbar
+        if self.kontostand - betrag >= -self.ueberziehungsrahmen:
+            self.kontostand -= betrag
+            print(f"€{betrag:.2f} ausgezahlt. Neuer Kontostand: €{self.kontostand:.2f}")
+            return True
+        
+        # Falls der Überziehungsrahmen überschritten wird → Fehler
+        verfuegbar = self.kontostand + self.ueberziehungsrahmen
+        raise ValueError(f"Überziehungsrahmen überschritten! Verfügbar: €{verfuegbar:.2f}")
+    
+    def info(self):
+        # Gibt exakte Infos zum Girokonto zurück
+        return f"Girokonto {self.kontonummer}: €{self.kontostand:.2f}, Überziehungsrahmen: €{self.ueberziehungsrahmen:.2f}"
+
+
+# --------------------------------------------
+# Testprogramm (startet nur wenn Datei direkt ausgeführt wird)
+# --------------------------------------------
+def main():
+    print("=== Banksoftware Test ===")
+    
+    # ----------------------------------------
+    # Abschnitt: Sparkonto testen
+    # ----------------------------------------
+    print("\n--- Sparkonto Test ---")
+    
+    # Sparkonto mit 1000 € Startguthaben und 2 % Zinsen erstellen
+    sparkonto = Sparkonto("DE123456789", 1000, 0.02)
+    print(sparkonto.info())
+    
+    # Geld einzahlen
+    sparkonto.einzahlen(500)
+
+    # Geld auszahlen
+    sparkonto.auszahlen(200)
+
+    # Versuch: mehr Geld abheben als vorhanden → Fehler
+    try:
+        sparkonto.auszahlen(2000)
+    except ValueError as e:
+        print("Fehler:", e)
+
+    # Zinsen auf das Konto aufrechnen
+    sparkonto.zinsen_gutschreiben()
+    print(sparkonto.info())
+    
+    # ----------------------------------------
+    # Abschnitt: Girokonto testen
+    # ----------------------------------------
+    print("\n--- Girokonto Test ---")
+    
+    # Girokonto mit 500 € Startguthaben und 1000 € Überziehung
+    girokonto = Girokonto("DE987654321", 500, 1000)
+    print(girokonto.info())
+    
+    # Abhebung, die den Kontostand ins Minus bringt (bis -300)
+    girokonto.auszahlen(800)
+
+    # Diese Abhebung würde zu weit ins Minus gehen → Fehler
+    try:
+        girokonto.auszahlen(800)
+    except ValueError as e:
+        print("Fehler:", e)
+
+    # Wieder Geld einzahlen
+    girokonto.einzahlen(1000)
+    print(girokonto.info())
+    
+    # ----------------------------------------
+    # Abschnitt: Überweisung testen
+    # ----------------------------------------
+    print("\n--- Überweisung Test ---")
+    betrag = 300
+
+    # Versuch, Geld zwischen Konten zu überweisen
+    try:
+        girokonto.auszahlen(betrag)   # Erst vom Girokonto abheben
+        sparkonto.einzahlen(betrag)   # Dann aufs Sparkonto einzahlen
+        print("Überweisung erfolgreich!")
+    except ValueError as e:
+        print("Überweisung fehlgeschlagen:", e)
+
+
+# Startet nur, wenn Datei direkt ausgeführt wird
+if __name__ == "__main__":
+    main()
