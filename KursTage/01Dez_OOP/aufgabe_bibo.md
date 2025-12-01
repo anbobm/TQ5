@@ -16,3 +16,5 @@ Erstelle zusätzlich eine Klasse Bibliothek, die:
 
 * eine Liste von Medien speichert
 * Methoden bietet zum hinzufügen, entfernen, auflisten aller Medien
+
+Zeichne anschließend ein Klassendiagramm.
