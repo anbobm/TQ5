@@ -8,9 +8,9 @@ import random
 import sys
 
 villains = [
-    {'name': 'Kobold', 'hp': 30, 'atk': 5, 'crit': 15, 'dodge': 20, 'block': 10},
-    {'name': 'Goblin', 'hp': 40, 'atk': 7, 'crit': 10, 'dodge': 20, 'block': 10},
-    {'name': 'Orc', 'hp': 70, 'atk': 12, 'crit': 20, 'dodge': 20, 'block': 10},
+    {'name': 'Kobold', 'hp': {'current': 30, 'max': 30}, 'atk': 5, 'crit': 15, 'dodge': 20, 'block': 10, 'reward': 10},
+    {'name': 'Goblin', 'hp': {'current': 40, 'max': 40}, 'atk': 7, 'crit': 10, 'dodge': 20, 'block': 10, 'reward': 15},
+    {'name': 'Orc', 'hp': {'current': 70, 'max': 70}, 'atk': 12, 'crit': 20, 'dodge': 20, 'block': 10, 'reward': 20},
 ]
 
 class Fight_Round:
@@ -21,7 +21,7 @@ class Fight_Round:
             'hero_action': '',
             'villain_action': '',
             'hero_dead': False,
-            'villain_dead': False
+            'villain_dead': False,
         }
     def start_round(self):
         print('[1] Angreifen')
@@ -33,8 +33,11 @@ class Fight_Round:
                 valid_choice = True
                 self.calc_round(user_input)
                 self.info()
+                return self._summary
             if user_input == '2':
                 valid_choice = True
+                self._summary['hero_action'] = 'run'
+                return self._summary
     def calc_round(self, user_action):
         #For now Heros Action allways comes first
         if user_action == '1':
@@ -48,11 +51,33 @@ class Fight_Round:
                 return self._summary
             self._summary['villain_action'] = 'attack'
             villain_attack = self._villain.attack()
+            self._summary['villain_attack'] = villain_attack
             hero_defend = self._hero.defend(villain_attack)
+            self._summary['hero_defend'] = hero_defend
             self._summary['hero_dead'] = self._hero.check_death()
     def info(self):
-        print(self._summary)
-            
+        #print(self._summary)
+        if self._summary['hero_action'] == 'attack':
+            print(f'{self._hero.get_name()} greift an!')
+            if self._summary['villain_defend']['dodge']:
+                print(f'{self._villain.get_name()} weicht dem Angriff aus.')
+            if self._summary['villain_defend']['block']:
+                print(f'{self._villain.get_name()} blockt den Angriff.')
+            print(f'{self._villain.get_name()} erleidet {self._summary['villain_defend']['dmg']} Schaden')
+        if self._summary['villain_action'] == 'attack':
+            print(f'{self._villain.get_name()} greift an!')
+            if self._summary['hero_defend']['dodge']:
+                print(f'{self._hero.get_name()} weicht dem Angriff aus.')
+            if self._summary['hero_defend']['block']:
+                print(f'{self._hero.get_name()} blockt den Angriff.')
+            print(f'{self._hero.get_name()} erleidet {self._summary['hero_defend']['dmg']} Schaden')
+        if self._summary['villain_dead']:
+            print(f'{self._villain.get_name()} geht zu Boden und kann nicht mehr weiterkämpfen')
+        if self._summary['hero_dead']:
+            print(f'{self._hero.get_name()} geht zu Boden und kann nicht mehr weiterkämpfen')
+        print(f'{self._hero.get_name()} HP: {self._hero.get_hp_string()}')
+        print(f'{self._villain.get_name()} HP: {self._villain.get_hp_string()}')
+
 
 class Fight:
     def __init__(self, hero, villain):
@@ -61,8 +86,14 @@ class Fight:
         self._rounds = [] # coming soon
         self._round_counter = 0
     def start_round(self):
-        round = Fight_Round(self._hero, self._villain)
-        round_summary = round.start_round()
+        fight_ended = False
+        while fight_ended == False:
+            round = Fight_Round(self._hero, self._villain)
+            round_summary = round.start_round()
+            if round_summary['hero_action'] == 'run':
+                fight_ended = True
+            elif round_summary['hero_dead'] or round_summary['villain_dead']:
+                fight_ended = True
     def check_end_of_fight(self):
         if self._hero.check_death() or self._villain.check_death():
             return True
@@ -74,7 +105,7 @@ class Fight:
             return self._hero.get_name()
         return 'Fight is still ongoing'
     def info(self):
-        print(f'Runde: {self._round_counter}: {self._hero.get_name()} gegen {self._villain.get_name()}')
+        print(f'Runde: {self._round_counter}: {self._hero.get_name()} {self._hero.get_hp_string()} gegen {self._villain.get_name()} {self._villain.get_hp_string()}')
     def conclusion(self):
         print(f'Winner: {self.check_winner()}')
 
@@ -104,7 +135,7 @@ class Arena:
 class Hero:
     def __init__(self, name):
         self._name = name
-        self._hp = 100
+        self._hp = {'current': 100, 'max': 100}
         self._atk = 10
         self._block = 10
         self._dodge = 10
@@ -116,10 +147,12 @@ class Hero:
             'block': random.randint(1, 100) < self._block,
             'dmg': 0
         }
-        if defend_summary['block']:
-            defend_summary['dmg'] = atk['value'] * 0.5
         if defend_summary['dodge']:
             defend_summary['dmg'] = 0
+        elif defend_summary['block']:
+            defend_summary['dmg'] = atk['value'] * 0.5
+        else:
+            defend_summary['dmg'] = atk['value']
         self.take_dmg(defend_summary['dmg'])
         return defend_summary
     def attack(self):
@@ -136,6 +169,7 @@ class Hero:
             attack_summary['strength'] = 'pathetic'
             attack_summary['value'] = self.get_atk() * 0.5
             return attack_summary
+        attack_summary['value'] = self.get_atk()
         return attack_summary
     def get_atk(self):
         # TODO check villain defense here
@@ -143,9 +177,11 @@ class Hero:
     def get_hp(self):
         return self._hp
     def take_dmg(self, atk):
-        self._hp -= atk
+        self._hp['current'] -= atk
+    def get_hp_string(self):
+        return f'{round(self._hp['current'])}/{self._hp['max']}'
     def check_death(self):
-        if self._hp <= 0:
+        if self._hp['current'] <= 0:
             return True
         return False
     
@@ -162,11 +198,12 @@ class Villain:
             'block': random.randint(1, 100) < self._block,
             'dmg': 0
         }
-        print(defend_summary['block'])
-        if defend_summary['block']:
-            defend_summary['dmg'] = atk['value'] * 0.5
         if defend_summary['dodge']:
             defend_summary['dmg'] = 0
+        elif defend_summary['block']:
+            defend_summary['dmg'] = atk['value'] * 0.5
+        else:
+            defend_summary['dmg'] = atk['value']
         self.take_dmg(defend_summary['dmg'])
         return defend_summary
     def get_name(self):
@@ -175,11 +212,13 @@ class Villain:
         return self._atk
     def get_hp(self):
         return self._hp
+    def get_hp_string(self):
+        return f'{round(self._hp['current'])}/{self._hp['max']}'
     def take_dmg(self, atk):
-        self._hp -= atk
+        self._hp['current'] -= atk
         return self._hp
     def check_death(self):
-        if self._hp <= 0:
+        if self._hp['current'] <= 0:
             return True
         return False
     def attack(self):
@@ -192,12 +231,11 @@ class Villain:
             attack_summary['strength'] = 'awesome'
             attack_summary['value'] = self.get_atk() * 2
             return attack_summary
-        if dice > 30:
-            attack_summary['strength'] = 'normal'
-            attack_summary['value'] = self.get_atk() * 1 
+        if dice < 30:
+            attack_summary['strength'] = 'pathetic'
+            attack_summary['value'] = self.get_atk() * 0.5 
             return attack_summary
-        attack_summary['strength'] = 'pathetic'
-        attack_summary['value'] = self.get_atk() * 0.5
+        attack_summary['value'] = self.get_atk()
         return attack_summary
 
 def eval_greeting_input():
