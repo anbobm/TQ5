@@ -22,5 +22,5 @@ liste = s.split("-") # ['abc', 'def', '012']
 Einen String der mehrere Zeilen enthält in einzelne Zeilen splitten:
 ```python
 s = "abc\ndef\n"
-zeilen = s.splitlines("\n") # ['abc', 'def']
+zeilen = s.splitlines() # ['abc', 'def']
 ```
