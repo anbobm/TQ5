@@ -139,6 +139,12 @@ class Hero:
         self._atk = 10
         self._block = 10
         self._dodge = 10
+        self._cash = 0
+    def get_cash(self):
+        return self._cash
+    def gain_cash(self, cash):
+        self._cash += cash
+        return self._cash
     def get_name(self):
         return self._name
     def defend(self, atk):
