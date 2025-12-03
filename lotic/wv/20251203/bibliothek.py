@@ -1,15 +1,7 @@
-
 import sqlite3
 import json
 import sys
-
-def sqltest():
-    connection = sqlite3.connect('biblio.db')
-    cur = connection.cursor()
-    cur.execute('insert into test (name) values ("lotic")')
-    connection.commit()
-
-#sqltest()
+import csv
 
 class DBController:
     def __init__(self):
@@ -26,6 +18,21 @@ class DBController:
             return True
         except:
             return False
+    def insert_books(self, booklist: list['Buch']):
+        try:
+            connection = sqlite3.connect('biblio.db')
+            insertData = []
+            for book in booklist:
+                insert_list = book.get_dbinsert_data()
+                insertData.append(insert_list)
+            cur = connection.cursor()
+            query = 'insert into books (title, release_year, author, page_count) values (?, ?, ?, ?)'
+            cur.executemany(query, insertData)
+            connection.commit()
+            connection.close()
+            return True
+        except:
+            return False
     def insert_dvd(self, dvd: 'Dvd'):
         try:
             connection = sqlite3.connect('biblio.db')
@@ -33,6 +40,21 @@ class DBController:
             cur = connection.cursor()
             query = 'insert into dvds (title, release_year, regisseur, duration) values (?, ?, ?, ?)'
             cur.execute(query, insertData)
+            connection.commit()
+            connection.close()
+            return True
+        except:
+            return False
+    def insert_dvds(self, dvdlist: list['Dvd']):
+        try:
+            connection = sqlite3.connect('biblio.db')
+            insertData = []
+            for dvd in dvdlist:
+                insert_list = dvd.get_dbinsert_data()
+                insertData.append(insert_list)
+            cur = connection.cursor()
+            query = 'insert into dvds (title, release_year, regisseur, duration) values (?, ?, ?, ?)'
+            cur.executemany(query, insertData)
             connection.commit()
             connection.close()
             return True
@@ -80,6 +102,22 @@ class Bibliothek:
     def __init__(self, db_controller, media_list = []):
         self._db_controller = db_controller
         self._media_list = media_list
+    def book_list(self, data):
+        booklist = db_controller.book_list()
+        booksstring = 'ID - Titel - Veröffentlicht - Autor - Seiten\n'
+        if len(booklist) == 0:
+            return 'Keine Bücher gefunden'
+        for book in booklist:
+            booksstring += f'{book[0]} - {book[1]} - {book[2]} - {book[3]} - {book[4]}\n'
+        return booksstring
+    def dvd_list(self, data):
+        dvdlist = db_controller.dvd_list()
+        dvdsstring = 'ID - Titel - Veröffentlicht - Regisseur - Spieldauer\n'
+        if len(dvdlist) == 0:
+            return 'Keine DVD gefunden'
+        for dvd in dvdlist:
+            dvdsstring += f'{dvd[0]} - {dvd[1]} - {dvd[2]} - {dvd[3]} - {dvd[4]}\n'
+        return dvdsstring 
     def clear_media_list(self):
         self._media_list = []
         return True
@@ -138,6 +176,90 @@ class Bibliothek:
     def list_medias(self):
         for media in self._media_list:
             print(media)
+    def csv_import_books(self, data):
+        #import_file = open(data.path, 'r', encoding='utf-8')
+        import_list = []
+        with open(data['path'], encoding = 'utf-8', newline = '') as csvfile:
+            rows = csv.reader(csvfile)
+            for row in rows:
+                title, release_year, author, page_count = row
+                book = Buch(title, release_year, author, page_count)
+                import_list.append(book)
+        if len(import_list) == 0:
+            return 'Kein Buch zum importieren'
+        inserted_into_db = self._db_controller.insert_books(import_list)
+        if inserted_into_db:
+            return f'{len(import_list)} Bücher importiert'
+        else:
+            return 'Import fehlgeschlagen'
+    def csv_import_dvds(self, data):
+        #import_file = open(data.path, 'r', encoding='utf-8')
+        import_list = []
+        with open(data['path'], encoding = 'utf-8', newline = '') as csvfile:
+            rows = csv.reader(csvfile)
+            for row in rows:
+                title, release_year, regisseur, duration = row
+                dvd = Dvd(title, release_year, regisseur, duration)
+                import_list.append(dvd)
+        if len(import_list) == 0:
+            return 'Keine DVD zum importieren'
+        inserted_into_db = self._db_controller.insert_dvds(import_list)
+        if inserted_into_db:
+            return f'{len(import_list)} DVDs importiert'
+        else:
+            return 'Import fehlgeschlagen'
+    def csv_export_books(self, data):
+        #import_file = open(data.path, 'r', encoding='utf-8')
+        try:
+            export_list = self._db_controller.book_list()
+            with open(data['path'], 'w', newline='') as csvfile:
+                writer = csv.writer(
+                    csvfile,
+                    delimiter=',',
+                    quotechar='"',
+                    quoting=csv.QUOTE_MINIMAL
+                )
+                for book in export_list:
+                    book_attr_list = list(book) 
+                    book_attr_list.pop(0)
+                    writer.writerow(book_attr_list)
+            return f'{len(export_list)} Bücher wurden exportiert.'
+        except:
+            return 'Export fehlgeschlagen.'
+    def csv_export_dvds(self, data):
+        #TODO WORK HERE
+        #import_file = open(data.path, 'r', encoding='utf-8')
+        try:
+            export_list = self._db_controller.book_list()
+            with open(data['path'], 'w', newline='') as csvfile:
+                writer = csv.writer(
+                    csvfile,
+                    delimiter=',',
+                    quotechar='"',
+                    quoting=csv.QUOTE_MINIMAL
+                )
+                for book in export_list:
+                    book_attr_list = list(book) 
+                    book_attr_list.pop(0)
+                    writer.writerow(book_attr_list)
+            return f'{len(export_list)} Bücher wurden exportiert.'
+        except:
+            return 'Export fehlgeschlagen.'
+
+        '''
+        with open(data['path'], encoding = 'utf-8', newline = '') as csvfile:
+            rows = csv.reader(csvfile)
+            for row in rows:
+                title, release_year, author, page_count = row
+                book = Buch(title, release_year, author, page_count)
+                import_list.append(book)
+        if len(import_list) == 0:
+            return 'Kein Buch zum importieren'
+        inserted_into_db = self._db_controller.insert_books(import_list)
+        if inserted_into_db:
+            return f'{len(import_list)} Bücher importiert'
+        else:
+            return 'Import fehlgeschlagen'
     def import_books_csv(self):
         filename = input('Welche Datei soll importiert werden? ')
         import_file = open(filename, 'r', encoding='utf-8')
@@ -153,6 +275,7 @@ class Bibliothek:
             self.add_media(book)
         import_file.close()
         print(f'{len(media_list)} Bücher wurden importiert')
+            '''
     def import_dvds_csv(self):
         filename = input('Welche Datei soll importiert werden? ')
         import_file = open(filename, 'r', encoding='utf-8')
@@ -257,79 +380,8 @@ def removeTitle():
         return print('Medium wurde entfernt')
     return print('Medium konnte nicht entfernt werden')
 
-def readUserInput():
-    userInput = ''
-    while userInput != 'q':
-        userInput = input()
-        if userInput == '1':
-            readBookInfo()
-        elif userInput == '2':
-            readDVDInfo()
-        elif userInput == '3':
-            removeTitle()
-        elif userInput == '4':
-            print('[1] Alle Bücher')
-            print('[2] Alle Dvds')
-            list_choice = input()
-            if(list_choice == '1'):
-                db_entries = db_controller.book_list()
-                print(db_entries)
-
-#            biblio1.list_medias() 
-        elif userInput == '5':
-            print('[1] Bücher Importieren')
-            print('[2] DVDs Importieren')
-            import_choice = input()
-            if import_choice == '1':
-                biblio1.import_books_csv()
-            elif import_choice == '2':
-                biblio1.import_dvds_csv()
-            else:
-                print('Ungültige Eingabe')
-                bibmenu()
-        elif userInput == '6':
-            print('[1] Bücher Exportieren')
-            print('[2] DVDs Exportieren')
-            export_choice = input()
-            if export_choice == '1':
-                biblio1.export_books_csv()
-            elif export_choice == '2':
-                biblio1.export_dvds_csv()
-        elif userInput == '7':
-            print('[1] Bücher Importieren')
-            print('[2] DVDs Importieren')
-            import_choice = input()
-            if import_choice == '1':
-                biblio1.import_books_json()
-            elif import_choice == '2':
-                biblio1.import_dvds_json()
-            else:
-                print('Ungültige Eingabe')
-                bibmenu()
-        elif userInput == '8':
-            print('[1] Bücher Exportieren')
-            print('[2] DVDs Exportieren')
-            export_choice = input()
-            biblio1.export_books_json()
-        elif userInput == 'h':
-            bibmenu()
-        elif userInput == 'q':
-            break
-        else:
-            print('Ungültige Eingabe')
-
 db_controller = DBController()
 biblio1 = Bibliothek(db_controller)
-#testlist = db_controller.books_search_by_title('mo')
-#print(testlist)
-#biblio1.load_books()
-# Some test Media
-#buch1 = Buch('Momo', 1973, 'Micheal Ende', 250)
-#biblio1.add_media(buch1)
-
-#biblio1.books_to_dictlist()
-#dvd1 = Dvd('The hateful eight', 2015, 'Quentin Tarantino', 168)
-#biblio1.add_media(dvd1)
 
 class UIController:
     def __init__(self):
@@ -338,11 +390,10 @@ class UIController:
         print('Willkommen in Lotics Bibliothek')
     def mainmenu(self):
         print('[1]: Medium hinzufügen')
-        print('[2]: Medium löschen')
-        print('[4]: Liste')
-        print('[5]: Suche')
-        print('[6]: CSV Import/Export')
-        print('[7]: JSON Import/Export')
+        print('[2]: Liste')
+        print('[3]: Suche')
+        print('[4]: CSV Import/Export')
+        print('[5]: JSON Import/Export')
         print('[h]: Hilfe')
         print('[q]: Beenden')
     def eval_input(self):
@@ -351,9 +402,53 @@ class UIController:
             userInput = input()
             if userInput == '1':
                 return self.media_create_menu()
+            if userInput == '2':
+                return self.media_list_menu()
+            if userInput == '4':
+                return self.csv_menu()
             elif userInput == 'q':
                 return 'quit'
                 break
+            else:
+                print('Ungültige Eingabe')
+    def csv_menu(self):
+        print('[1] Importiere Bücher')
+        print('[2] Importiere DVDs')
+        print('[3] Exportiere Bücher')
+        print('[4] Exportiere DVDs')
+        print('[q] Zurück')
+        userInput = ''
+        while True:
+            userInput = input()
+            if userInput == '1':
+                print('Importiere Bücher aus CSV Datei')
+                path = input('Pfad zu deiner CSV Datei? ')
+                return({'exe': 'csv_import_books', 'path': path})
+            if userInput == '2':
+                print('Importiere DVDs aus CSV Datei')
+                path = input('Pfad zu deiner CSV Datei? ')
+                return({'exe': 'csv_import_dvds', 'path': path})
+            if userInput == '3':
+                print('Exportiere Bücher als CSV Datei')
+                path = input('Speichern unter? ')
+                return({'exe': 'csv_export_books', 'path': path})
+            if userInput == 'q':
+                return 'back'
+            else:
+                print('Ungültige Eingabe')
+    def media_list_menu(self):
+        print('[1] Liste Bücher')
+        print('[2] Liste DVDs')
+        print('[q] Zurück')
+        userInput = ''
+        while True:
+            userInput = input()
+            if userInput == '1':
+                return({'exe': 'book_list'})
+            if userInput == '2':
+                return({'exe': 'dvd_list'})
+            if userInput == 'q':
+                return 'back'
             else:
                 print('Ungültige Eingabe')
     def media_create_menu(self):
@@ -369,6 +464,8 @@ class UIController:
                 return(self.dvd_create_mask())
             if userInput == 'q':
                 return 'back'
+            else:
+                print('Ungültige Eingabe')
     def book_create_mask(self):
         title = input('Titel: ')
         release_year = input('Erscheinungsjahr: ')
@@ -382,7 +479,6 @@ class UIController:
             'page_count': page_count
         }
         return response
-
     def dvd_create_mask(self):
         title = input('Titel: ')
         release_year = input('Erscheinungsjahr: ')
@@ -396,7 +492,6 @@ class UIController:
             'duration': duration
         }
         return response
-
 
 ui_controller = UIController()
 ui_controller.greeting()
