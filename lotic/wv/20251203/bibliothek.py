@@ -227,10 +227,8 @@ class Bibliothek:
         except:
             return 'Export fehlgeschlagen.'
     def csv_export_dvds(self, data):
-        #TODO WORK HERE
-        #import_file = open(data.path, 'r', encoding='utf-8')
         try:
-            export_list = self._db_controller.book_list()
+            export_list = self._db_controller.dvd_list()
             with open(data['path'], 'w', newline='') as csvfile:
                 writer = csv.writer(
                     csvfile,
@@ -238,11 +236,11 @@ class Bibliothek:
                     quotechar='"',
                     quoting=csv.QUOTE_MINIMAL
                 )
-                for book in export_list:
-                    book_attr_list = list(book) 
-                    book_attr_list.pop(0)
-                    writer.writerow(book_attr_list)
-            return f'{len(export_list)} Bücher wurden exportiert.'
+                for dvd in export_list:
+                    dvd_attr_list = list(dvd) 
+                    dvd_attr_list.pop(0)
+                    writer.writerow(dvd_attr_list)
+            return f'{len(export_list)} DVDs wurden exportiert.'
         except:
             return 'Export fehlgeschlagen.'
 
@@ -394,6 +392,7 @@ class UIController:
         print('[3]: Suche')
         print('[4]: CSV Import/Export')
         print('[5]: JSON Import/Export')
+        print('[6]: Medium entfernen')
         print('[h]: Hilfe')
         print('[q]: Beenden')
     def eval_input(self):
@@ -405,17 +404,21 @@ class UIController:
             if userInput == '2':
                 return self.media_list_menu()
             if userInput == '4':
-                return self.csv_menu()
+                return self.import_export_menu()
             elif userInput == 'q':
                 return 'quit'
                 break
             else:
                 print('Ungültige Eingabe')
-    def csv_menu(self):
-        print('[1] Importiere Bücher')
-        print('[2] Importiere DVDs')
-        print('[3] Exportiere Bücher')
-        print('[4] Exportiere DVDs')
+    def import_export_menu(self):
+        print('[1] Importiere Bücher aus csv')
+        print('[2] Importiere DVDs aus csv')
+        print('[3] Exportiere Bücher nach csv')
+        print('[4] Exportiere DVDs nach csv')
+        print('[5] Importiere Bücher aus json')
+        print('[6] Importiere DVDs aus json')
+        print('[7] Exportiere Bücher nach json')
+        print('[8] Exportiere DVDs nach json')
         print('[q] Zurück')
         userInput = ''
         while True:
@@ -432,6 +435,10 @@ class UIController:
                 print('Exportiere Bücher als CSV Datei')
                 path = input('Speichern unter? ')
                 return({'exe': 'csv_export_books', 'path': path})
+            if userInput == '4':
+                print('Exportiere DVDs als CSV Datei')
+                path = input('Speichern unter? ')
+                return({'exe': 'csv_export_dvds', 'path': path})
             if userInput == 'q':
                 return 'back'
             else:
