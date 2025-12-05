@@ -54,7 +54,7 @@ class Database:
             return False
     # Fügt einen Nutzer zur DB hinzu
     def add_user(self, user: User):
-        #try:
+        try:
             connection = sqlite3.connect(self._db_name)
             cur = connection.cursor()
             insert_values = [user.get_name()]
@@ -66,7 +66,8 @@ class Database:
             connection.commit()
             connection.close()
             return True
-        #except:
+        except:
+            print('Fehler')
             return False
     # Holt einen Nutzer aus der DB anhand seiner id
     def get_user(self, user_id):
@@ -78,16 +79,15 @@ class Database:
             connection = sqlite3.connect(self._db_name)
             cur = connection.cursor()
             insert_values = [post.get_user_id(), post.get_title()]
-            print(insert_values)
             query = 'insert into post(user_id, title) values (?, ?) returning rowid'
             res = cur.execute(query, insert_values)
             id_tuple = res.fetchone()
             post.set_id(id_tuple[0])
-            print(f'PostID: {post.get_id()}')
             connection.commit()
             connection.close()
             return True
         except:
+            print('Fehler')
             return False
 
     # Holt alle Posts die zu einer bestimmten user_id gehören aus der DB
@@ -99,8 +99,6 @@ class Database:
             query = 'select * from post where user_id = ?'
             res = cur.execute(query, select_values)
             post_tuples = res.fetchall()
-            print('ptuple')
-            print(post_tuples)
             connection.close()
             post_list = []
             for post_tuple in post_tuples:
