@@ -25,4 +25,3 @@ while max_index > 0:
 
 #Print sorted list
 print(mylist)
-
