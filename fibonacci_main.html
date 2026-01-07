@@ -1,0 +1,193 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fibonacci_main module &mdash; Fibonacci Analyse  Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=245627df"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=9bf55d28"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Fibonacci Analyse
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">fibonacci_main module</a><ul>
+<li><a class="reference internal" href="#fibonacci_main.FibonacciApp"><code class="docutils literal notranslate"><span class="pre">FibonacciApp</span></code></a><ul>
+<li><a class="reference internal" href="#fibonacci_main.FibonacciApp.figure"><code class="docutils literal notranslate"><span class="pre">FibonacciApp.figure</span></code></a></li>
+<li><a class="reference internal" href="#fibonacci_main.FibonacciApp.canvas"><code class="docutils literal notranslate"><span class="pre">FibonacciApp.canvas</span></code></a></li>
+<li><a class="reference internal" href="#fibonacci_main.FibonacciApp.toolbar"><code class="docutils literal notranslate"><span class="pre">FibonacciApp.toolbar</span></code></a></li>
+<li><a class="reference internal" href="#fibonacci_main.FibonacciApp.calculate_fibonacci"><code class="docutils literal notranslate"><span class="pre">FibonacciApp.calculate_fibonacci()</span></code></a></li>
+<li><a class="reference internal" href="#fibonacci_main.FibonacciApp.init_ui"><code class="docutils literal notranslate"><span class="pre">FibonacciApp.init_ui()</span></code></a></li>
+<li><a class="reference internal" href="#fibonacci_main.FibonacciApp.plot_dynamic_colors"><code class="docutils literal notranslate"><span class="pre">FibonacciApp.plot_dynamic_colors()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Fibonacci Analyse</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">fibonacci_main module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/fibonacci_main.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-fibonacci_main">
+<span id="fibonacci-main-module"></span><h1>fibonacci_main module<a class="headerlink" href="#module-fibonacci_main" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="fibonacci_main.FibonacciApp">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fibonacci_main.</span></span><span class="sig-name descname"><span class="pre">FibonacciApp</span></span><a class="reference internal" href="_modules/fibonacci_main.html#FibonacciApp"><span class="viewcode-link"><span class="pre">[Quellcode]</span></span></a><a class="headerlink" href="#fibonacci_main.FibonacciApp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QWidget</span></code></p>
+<p>Eine grafische Benutzeroberfläche (GUI) zur Visualisierung der Fibonacci-Folge.</p>
+<p>Diese Klasse erstellt ein Fenster mit PyQt6, berechnet die Zahlenfolge
+basierend auf Benutzereingaben und stellt die Ergebnisse in zwei
+dynamisch gefärbten, zoombaren Diagrammen dar.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="fibonacci_main.FibonacciApp.figure">
+<span class="sig-name descname"><span class="pre">figure</span></span><a class="headerlink" href="#fibonacci_main.FibonacciApp.figure" title="Link to this definition"></a></dt>
+<dd><p>Die Zeichenfläche für die Diagramme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="fibonacci_main.FibonacciApp.canvas">
+<span class="sig-name descname"><span class="pre">canvas</span></span><a class="headerlink" href="#fibonacci_main.FibonacciApp.canvas" title="Link to this definition"></a></dt>
+<dd><p>Der Container, der die Grafik für PyQt anzeigt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FigureCanvas</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="fibonacci_main.FibonacciApp.toolbar">
+<span class="sig-name descname"><span class="pre">toolbar</span></span><a class="headerlink" href="#fibonacci_main.FibonacciApp.toolbar" title="Link to this definition"></a></dt>
+<dd><p>Die interaktive Leiste zum Zoomen und Verschieben.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NavigationToolbar</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="fibonacci_main.FibonacciApp.calculate_fibonacci">
+<span class="sig-name descname"><span class="pre">calculate_fibonacci</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/fibonacci_main.html#FibonacciApp.calculate_fibonacci"><span class="viewcode-link"><span class="pre">[Quellcode]</span></span></a><a class="headerlink" href="#fibonacci_main.FibonacciApp.calculate_fibonacci" title="Link to this definition"></a></dt>
+<dd><p>Liest die Benutzereingabe aus und führt die mathematische Berechnung aus.</p>
+<p>Die Methode validiert die Eingabe, berechnet die Folge iterativ
+und stößt anschließend die grafische Darstellung an.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Verursacht<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Wenn die Eingabe keine gültige ganze Zahl ist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="fibonacci_main.FibonacciApp.init_ui">
+<span class="sig-name descname"><span class="pre">init_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/fibonacci_main.html#FibonacciApp.init_ui"><span class="viewcode-link"><span class="pre">[Quellcode]</span></span></a><a class="headerlink" href="#fibonacci_main.FibonacciApp.init_ui" title="Link to this definition"></a></dt>
+<dd><p>Erstellt die grafischen Elemente und ordnet sie in Layouts an.</p>
+<p>Dazu gehören das Eingabefeld, der Berechnungs-Button, das Textfeld
+für die Zahlen sowie die interaktive Grafikfläche mit Zoom-Leiste.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="fibonacci_main.FibonacciApp.plot_dynamic_colors">
+<span class="sig-name descname"><span class="pre">plot_dynamic_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fibonacci_main.html#FibonacciApp.plot_dynamic_colors"><span class="viewcode-link"><span class="pre">[Quellcode]</span></span></a><a class="headerlink" href="#fibonacci_main.FibonacciApp.plot_dynamic_colors" title="Link to this definition"></a></dt>
+<dd><p>Erstellt zwei Grafiken mit dynamischen Farbverläufen.</p>
+<p>Die Diagramme nutzen die ‚plasma‘ Farbkarte, um steigende Werte
+farblich hervorzuheben. Die Darstellung erfolgt über Matplotlib.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>list</em>) – Eine Liste der berechneten Fibonacci-Zahlen.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, TOBI-FISI.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
