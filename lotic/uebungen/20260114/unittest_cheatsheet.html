@@ -1,0 +1,306 @@
+<h2 id="unittest-assert-cheatsheet-druckversion-a4-einseitig">unittest
+assert-Cheatsheet — Druckversion (A4, einseitig)</h2>
+<p>Hinweis: kurze Beispiele zeigen typische Nutzung; ersetze obj/werte
+nach Bedarf.</p>
+<hr />
+<p>Allgemeines - Verwendung in TestCase-Methoden: self.assertX(actual,
+expected[, msg]) oder self.assertX(a, b, …) - Viele Methoden akzeptieren
+optional msg.</p>
+<hr />
+<p>Grundlegende Vergleiche</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th style="text-align: right;">Bedeutung</th>
+<th>Signatur</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>assertEqual</strong></td>
+<td style="text-align: right;">Gleichheit (==)</td>
+<td>self.assertEqual(a, b, msg=None)</td>
+<td>self.assertEqual(result, 42)</td>
+</tr>
+<tr class="even">
+<td><strong>assertNotEqual</strong></td>
+<td style="text-align: right;">Ungleichheit (!=)</td>
+<td>self.assertNotEqual(a, b)</td>
+<td>self.assertNotEqual(value, 0)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertTrue</strong></td>
+<td style="text-align: right;">Wahr</td>
+<td>self.assertTrue(x)</td>
+<td>self.assertTrue(flag)</td>
+</tr>
+<tr class="even">
+<td><strong>assertFalse</strong></td>
+<td style="text-align: right;">Falsch</td>
+<td>self.assertFalse(x)</td>
+<td>self.assertFalse(is_empty)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertIs</strong></td>
+<td style="text-align: right;">Identität (is)</td>
+<td>self.assertIs(a, b)</td>
+<td>self.assertIs(obj, None)</td>
+</tr>
+<tr class="even">
+<td><strong>assertIsNot</strong></td>
+<td style="text-align: right;">Nicht-identisch</td>
+<td>self.assertIsNot(a, b)</td>
+<td>self.assertIsNot(a, b)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertIsNone</strong></td>
+<td style="text-align: right;">Ist None</td>
+<td>self.assertIsNone(x)</td>
+<td>self.assertIsNone(maybe)</td>
+</tr>
+<tr class="even">
+<td><strong>assertIsNotNone</strong></td>
+<td style="text-align: right;">Nicht None</td>
+<td>self.assertIsNotNone(x)</td>
+<td>self.assertIsNotNone(value)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Vergleiche mit Ordnung (Zahlen)</p>
+<table>
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th style="text-align: right;">Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>assertGreater</strong></td>
+<td style="text-align: right;">a &gt; b</td>
+<td>self.assertGreater(a, b)</td>
+</tr>
+<tr class="even">
+<td><strong>assertGreaterEqual</strong></td>
+<td style="text-align: right;">a &gt;= b</td>
+<td>self.assertGreaterEqual(a, b)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertLess</strong></td>
+<td style="text-align: right;">a &lt; b</td>
+<td>self.assertLess(a, b)</td>
+</tr>
+<tr class="even">
+<td><strong>assertLessEqual</strong></td>
+<td style="text-align: right;">a &lt;= b</td>
+<td>self.assertLessEqual(a, b)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Näherungs-/Float-Vergleich</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th style="text-align: right;">Bedeutung</th>
+<th>Signatur</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>assertAlmostEqual</strong></td>
+<td style="text-align: right;">rund bis places oder delta</td>
+<td>self.assertAlmostEqual(a, b, places=7, delta=None)</td>
+<td>self.assertAlmostEqual(0.1+0.2, 0.3, places=7)</td>
+</tr>
+<tr class="even">
+<td><strong>assertNotAlmostEqual</strong></td>
+<td style="text-align: right;">nicht nahe</td>
+<td>self.assertNotAlmostEqual(a, b, places=7)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Sequenzen, Sets, Dictionaries</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th style="text-align: right;">Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>assertIn</strong></td>
+<td style="text-align: right;">Mitgliedschaft</td>
+<td>self.assertIn(member, container)</td>
+</tr>
+<tr class="even">
+<td><strong>assertNotIn</strong></td>
+<td style="text-align: right;">Nicht-Mitglied</td>
+<td>self.assertNotIn(member, container)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertSequenceEqual</strong></td>
+<td style="text-align: right;">Sequenz-Genauvergleich</td>
+<td>self.assertSequenceEqual(seq1, seq2)</td>
+</tr>
+<tr class="even">
+<td><strong>assertListEqual</strong></td>
+<td style="text-align: right;">List-Vergleich</td>
+<td>self.assertListEqual(list1, list2)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertTupleEqual</strong></td>
+<td style="text-align: right;">Tuple-Vergleich</td>
+<td>self.assertTupleEqual(t1, t2)</td>
+</tr>
+<tr class="even">
+<td><strong>assertSetEqual</strong></td>
+<td style="text-align: right;">Set-Vergleich</td>
+<td>self.assertSetEqual(s1, s2)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertDictEqual</strong></td>
+<td style="text-align: right;">Dict-Vergleich</td>
+<td>self.assertDictEqual(d1, d2)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Typ-Checks</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th style="text-align: right;">Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>assertIsInstance</strong></td>
+<td style="text-align: right;">isinstance(obj, cls)</td>
+<td>self.assertIsInstance(obj, MyClass)</td>
+</tr>
+<tr class="even">
+<td><strong>assertNotIsInstance</strong></td>
+<td style="text-align: right;">nicht Instanz</td>
+<td>self.assertNotIsInstance(obj, OtherClass)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Ausnahmen &amp; Warnungen</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Konstruktion</th>
+<th style="text-align: right;">Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>assertRaises (context manager)</strong></td>
+<td style="text-align: right;">erwartet Exception</td>
+<td>with self.assertRaises(ValueError): func(bad)</td>
+</tr>
+<tr class="even">
+<td><strong>assertRaisesRegex</strong></td>
+<td style="text-align: right;">Exception + Regex-Match</td>
+<td>with self.assertRaisesRegex(ValueError, “invalid”): f(bad)</td>
+</tr>
+<tr class="odd">
+<td><strong>assertWarns</strong></td>
+<td style="text-align: right;">erwartet Warnung</td>
+<td>with self.assertWarns(UserWarning): warnfunc()</td>
+</tr>
+<tr class="even">
+<td><strong>assertLogs</strong></td>
+<td style="text-align: right;">prüft Logging-Ausgaben</td>
+<td>with self.assertLogs(‘mod’, level=‘INFO’) as cm: f()</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Hilfs-/Sonstiges</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th style="text-align: right;">Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>fail</strong></td>
+<td style="text-align: right;">Test sofort fehlschlagen</td>
+<td>self.fail(“unreachable”)</td>
+</tr>
+<tr class="even">
+<td><strong>skipTest</strong></td>
+<td style="text-align: right;">Test überspringen</td>
+<td>self.skipTest(“reason”)</td>
+</tr>
+<tr class="odd">
+<td><strong>subTest</strong></td>
+<td style="text-align: right;">Untertests/Parametrisierung</td>
+<td>for x in vals: with self.subTest(x=x): self.assertTrue(f(x))</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Kurzreferenz — typische Signaturen - self.assertEqual(a, b[, msg]) -
+self.assertTrue(x[, msg]) - with self.assertRaises(ExceptionType): … -
+self.assertAlmostEqual(a, b[, places=7[, delta=None]])</p>
+<hr />
+<p>Druckhinweise - Seitenränder schmal (10–12 mm) für A4 einseitig. -
+Schriftgröße 10–11 pt, monospace für Codebeispiele. - Empfohlen: zweimal
+gefaltetes A4 (Z-Falz) oder Laminat für Handhabung.</p>
+<hr />
+<p>Datei zum Drucken - Um aus Markdown eine PDF zu erzeugen, verwende z.
+B.: pandoc cheatsheet.md -o cheatsheet.pdf –pdf-engine=xelatex -V
+geometry:margin=10mm -V fontsize=10pt</p>
+<p>(Ende)</p>

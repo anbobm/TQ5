@@ -11,4 +11,4 @@ def fibonacci(n):
         counter += 1
     return fib_list
 
-print(fibonacci(50))
+print(fibonacci(10))

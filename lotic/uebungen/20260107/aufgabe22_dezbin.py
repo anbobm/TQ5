@@ -1,4 +1,4 @@
-number = 13111983 
+number = 1024 
 remaining = number
 binary = ''
 div = 2
