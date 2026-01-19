@@ -1,0 +1,86 @@
+INSERT INTO category (id,parent_category,name) VALUES
+	 (1,NULL,'Wohnen'),
+	 (2,1,'Miete'),
+	 (3,1,'Nebenkosten'),
+	 (4,1,'Hausmeister'),
+	 (5,1,'Reparaturen'),
+	 (6,NULL,'Versorger'),
+	 (7,6,'Strom'),
+	 (8,6,'Wasser'),
+	 (9,6,'Gas'),
+	 (10,6,'Müll/Heizung');
+INSERT INTO category (id,parent_category,name) VALUES
+	 (11,NULL,'Internet & Telefon'),
+	 (12,11,'Internet'),
+	 (13,11,'Mobilfunk'),
+	 (14,11,'Festnetz'),
+	 (15,11,'Streaming-Abos'),
+	 (16,NULL,'Lebensmittel'),
+	 (17,16,'Supermarkt'),
+	 (18,16,'Wochenmarkt'),
+	 (19,16,'Getränke'),
+	 (20,NULL,'Essen unterwegs');
+INSERT INTO category (id,parent_category,name) VALUES
+	 (21,20,'Restaurant'),
+	 (22,20,'Café'),
+	 (23,20,'Lieferdienst'),
+	 (24,NULL,'Kleidung'),
+	 (25,24,'Bekleidung'),
+	 (26,24,'Schuhe'),
+	 (27,24,'Reinigung/Änderung'),
+	 (28,NULL,'Transport'),
+	 (29,28,'Auto (Treibstoff & Wartung)'),
+	 (30,28,'Versicherung & Steuer');
+INSERT INTO category (id,parent_category,name) VALUES
+	 (31,28,'Parkgebühren'),
+	 (32,28,'ÖPNV'),
+	 (33,NULL,'Gesundheit'),
+	 (34,33,'Arzt/Zahnarzt'),
+	 (35,33,'Medikamente'),
+	 (36,33,'Apotheke'),
+	 (37,NULL,'Versicherungen'),
+	 (38,37,'Krankenversicherung'),
+	 (39,37,'Haftpflicht'),
+	 (40,37,'Hausrat');
+INSERT INTO category (id,parent_category,name) VALUES
+	 (41,37,'Kfz-Versicherung'),
+	 (42,NULL,'Sparen & Investitionen'),
+	 (43,42,'Rücklagen'),
+	 (44,42,'Sparplan'),
+	 (45,42,'Investitionen'),
+	 (46,NULL,'Kredite & Schulden'),
+	 (47,46,'Kreditraten'),
+	 (48,46,'Zinsen'),
+	 (49,NULL,'Bildung & Weiterbildung'),
+	 (50,49,'Kurse');
+INSERT INTO category (id,parent_category,name) VALUES
+	 (51,49,'Bücher'),
+	 (52,49,'Seminare'),
+	 (53,NULL,'Freizeit & Hobby'),
+	 (54,53,'Sport'),
+	 (55,53,'Kultur'),
+	 (56,53,'Hobbybedarf'),
+	 (57,NULL,'Reisen & Urlaub'),
+	 (58,57,'Transport'),
+	 (59,57,'Unterkunft'),
+	 (60,57,'Verpflegung');
+INSERT INTO category (id,parent_category,name) VALUES
+	 (61,NULL,'Haushalt & Möbel'),
+	 (62,61,'Reinigungsmittel'),
+	 (63,61,'Möbel'),
+	 (64,61,'Haushaltsgeräte'),
+	 (65,NULL,'Haustiere'),
+	 (66,65,'Futter'),
+	 (67,65,'Tierarzt'),
+	 (68,65,'Zubehör'),
+	 (69,NULL,'Kinder & Familie'),
+	 (70,69,'Betreuung');
+INSERT INTO category (id,parent_category,name) VALUES
+	 (71,69,'Schule'),
+	 (72,69,'Kinderbedarf'),
+	 (73,NULL,'Geschenke & Spenden'),
+	 (74,73,'Geschenke'),
+	 (75,73,'Spenden'),
+	 (76,NULL,'Sonstiges'),
+	 (77,76,'Unkategorisiert'),
+	 (78,76,'Einmalig');
